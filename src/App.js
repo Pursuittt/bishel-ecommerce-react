@@ -1,10 +1,11 @@
 import React from 'react';
+import HomePage from './pages/homepage.page';
 import './App.css';
 
 class App extends React.Component {
   render() {
     return (
-      <h1>It works!</h1>
+      <HomePage/>
     )
   };
 }
