@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { getFirestore, addDoc, collection, query, where, getDocs } from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: "AIzaSyC2H2_KIAe1vtmpD9zzQbVGUmGEOPELHes",
@@ -12,6 +13,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
+// google authentication
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
 
@@ -20,3 +23,30 @@ export const signInWithGoogle = () => {
         .then()
         .catch()
 }
+
+// firestore
+const firestore = getFirestore();
+const usersCollection = collection(firestore, 'users');
+
+export const createUser = async (user, additionalData) => {
+    if (!user) return;
+
+    // check if user already exist
+    let data = null;
+    const querySnapshot = await getDocs(query(collection(firestore, '/users'), where('email', '==', `${user.email}`)));
+    querySnapshot.forEach((doc) => {
+        data = doc.data();
+    })
+
+    // if it doesn't, create new user
+    if (!data) {
+        addDoc(usersCollection, {
+            name: user.displayName,
+            email: user.email
+        });
+        return true;
+    }
+    else {
+        return false;
+    }
+} 
