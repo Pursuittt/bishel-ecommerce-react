@@ -48,8 +48,8 @@ class ShoppingMenu extends React.Component {
         return (
             <div className="shopping-menu">
                 {
-                    this.state.sections.map(({title, imageUrl, size, id}) => (
-                        <MenuItem title={title.toUpperCase()} imageUrl={imageUrl} size={size} key={id}/>
+                    this.state.sections.map(({id, ...otherSectionProps}) => (
+                        <MenuItem key={id} {...otherSectionProps}/>
                     ))
                 }
             </div>
