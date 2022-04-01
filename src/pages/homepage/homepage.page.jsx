@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ShoppingMenu from '../../components/shopping-menu-component/shopping-menu.component';
+import ShoppingMenu from '../../components/shopping-menu/shopping-menu.component';
 import './homepage.styles.scss';
 
 const HomePage = () => (

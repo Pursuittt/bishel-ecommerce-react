@@ -1,9 +1,9 @@
 import React from 'react';
 
-import FormInput from '../form-input-component/form-input.component';
-import CustomButton from '../custom-button-component/custom-button.component';
+import FormInput from '../form-input/form-input.component';
+import CustomButton from '../custom-button/custom-button.component';
 
-import { auth, createUser } from '../../firebase/firebase';
+import { createUser } from '../../firebase/firebase';
 
 import './sign-up.styles.scss'
 
@@ -29,7 +29,7 @@ class SignUp extends React.Component {
 
         const { displayName, email, password, confirmPassword } = this.state;
 
-        if (password != confirmPassword) {
+        if (password !== confirmPassword) {
             alert('Password don\'t match')
             return
         }
@@ -67,8 +67,7 @@ class SignUp extends React.Component {
                     value={ displayName }
                     onChange={ this.handleChange }
                     required
-                    >
-                    </FormInput>
+                    />
 
                     <FormInput
                     type="email"
@@ -77,8 +76,7 @@ class SignUp extends React.Component {
                     value={ email }
                     onChange={ this.handleChange }
                     required
-                    >
-                    </FormInput>
+                    />
 
                     <FormInput
                     type="password"
@@ -87,8 +85,7 @@ class SignUp extends React.Component {
                     value={ password }
                     onChange={ this.handleChange }
                     required
-                    >
-                    </FormInput>
+                    />
 
                     <FormInput
                     type="password"

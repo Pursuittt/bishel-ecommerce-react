@@ -1,5 +1,5 @@
 import React from 'react';
-import SectionItem from '../section-item-component/section-item.component'
+import SectionItem from '../section-item/section-item.component'
 
 import './section-preview.styles.scss';
 

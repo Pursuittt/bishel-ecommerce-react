@@ -1,0 +1,21 @@
+.shopping-bag {
+  width: 75px;
+  height: 75px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  .shopping-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .item-count {
+    position: absolute;
+    font-size: 15px;
+    font-weight: bold;
+    bottom: 24px;
+  }
+}

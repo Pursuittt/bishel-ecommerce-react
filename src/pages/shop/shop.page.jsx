@@ -2,7 +2,7 @@ import React from 'react';
 
 
 import SHOP_DATA from './shop.data'
-import SectionPreview from '../../components/section-preview-component/section-preview.component';
+import SectionPreview from '../../components/section-preview/section-preview.component';
 
 import './shop.styles.scss';
 
