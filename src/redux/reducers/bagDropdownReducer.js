@@ -1,4 +1,4 @@
-import { DISPLAY_DROPDOWN, HIDE_DROPDOWN } from '../actions/shoppingBagActions';
+import { DISPLAY_DROPDOWN, HIDE_DROPDOWN, REMOVE_ITEM } from '../actions/shoppingBagActions';
 
 const initialState = { 
     display: false,
@@ -25,9 +25,35 @@ const bagDropdownReducer = (state = initialState, action) => {
                     return { ...state, cartItems: [...state.cartItems]}
                 }
             }
-
             action.payload.quantity = 1;
             return { ...state, cartItems: [...state.cartItems, action.payload]}
+        case 'REMOVE_ITEM':
+            for (let i = 0; i < state.cartItems.length; i++) {
+                if (state.cartItems[i].id === action.payload.id) {
+                    return {...state, cartItems: state.cartItems.filter(item => item.id !== action.payload.id)}
+                }
+            }
+            return state;
+        case 'INCREASE_QUANTITY':
+            return { ...state, cartItems: state.cartItems.map(item => {
+                if (item.id === action.payload.id) {
+                    item.quantity += 1;
+                }
+                return item;
+            })}
+        case 'DECREASE_QUANTITY':
+            const cartItem = state.cartItems.find(item => item.id === action.payload.id)
+            if (cartItem.quantity > 1) {
+                return {...state, cartItems: state.cartItems.map(item => {
+                    if (item.id === cartItem.id) {
+                        item.quantity -= 1;
+                    }
+                    return item;
+                })}
+            }
+            else {
+                return {...state, cartItems: state.cartItems.filter(item => cartItem.id !== item.id)}
+            }
         default:
             return state;
     }
