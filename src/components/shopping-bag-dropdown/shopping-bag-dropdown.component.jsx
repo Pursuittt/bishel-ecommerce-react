@@ -8,7 +8,6 @@ import './shopping-bag-dropdown.styles.scss';
 
 const ShoppingBagDropdown = ({cartItems}) => (
     <div className="shopping-bag-dropdown">
-        { console.log(cartItems) }
         <div className="shopping-bag-items">
             {
                 cartItems.map(item => (
