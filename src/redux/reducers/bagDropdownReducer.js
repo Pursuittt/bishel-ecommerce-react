@@ -1,7 +1,8 @@
 import { DISPLAY_DROPDOWN, HIDE_DROPDOWN } from '../actions/shoppingBagActions';
 
 const initialState = { 
-    display: false
+    display: false,
+    cartItems: []
 }
 
 const bagDropdownReducer = (state = initialState, action) => {
@@ -17,6 +18,16 @@ const bagDropdownReducer = (state = initialState, action) => {
             else {
                 return bagDropdownReducer(state, DISPLAY_DROPDOWN())
             }
+        case 'ADD_ITEM':
+            for (let i = 0; i < state.cartItems.length; i++) {
+                if (state.cartItems[i].id === action.payload.id) {
+                    state.cartItems[i].quantity += 1;
+                    return { ...state, cartItems: [...state.cartItems]}
+                }
+            }
+
+            action.payload.quantity = 1;
+            return { ...state, cartItems: [...state.cartItems, action.payload]}
         default:
             return state;
     }
